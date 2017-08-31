@@ -33,8 +33,7 @@ LOCAL_ASSET_DIR := $(LOCAL_PATH)/assets
 LOCAL_STATIC_JAVA_LIBRARIES := \
 	android-support-v4 \
 	libFactory_MotorService \
-	libFactory_gson \
-	libFactory_BreathledService
+	libFactory_gson
 
 #LOCAL_CERTIFICATE := platform
 
@@ -50,6 +49,5 @@ include $(CLEAR_VARS)
 
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := \
 	libFactory_MotorService:libs/MotorService.jar \
-	libFactory_gson:libs/gson.jar \
-	libFactory_BreathledService:libs/BreathledService.jar
+	libFactory_gson:libs/gson.jar
 include $(BUILD_MULTI_PREBUILT)

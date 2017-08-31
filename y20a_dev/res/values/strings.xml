@@ -447,8 +447,9 @@
     <string name="write_sn_fail">写入SN失败</string>
 	
     <string name="change_screen_text">切换屏幕</string>
-	<string name="start_text">测试信号灯</string>
-    <string name="close_text">关闭信号灯</string>
+    <string name="breath_text">呼吸信号灯</string>
+    <string name="ear_text">两耳信号灯</string>
+    <string name="signal_lamp_text">观察三个信号灯能否点亮</string>
 	<string name="OTG_textView">插入OTG线外接U盘后，观察是否读取到U盘的存储空间信息</string>
 	<string name="projection_lcd_caution">打开投影后，首先观察投影设备的风扇转动是否正常！！！</string>
 	<string name="projection_lcd">投影灯LCD测试</string>

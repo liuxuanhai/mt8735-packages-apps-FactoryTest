@@ -44,13 +44,13 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 
 	public FactoryMode() {
 		int[] arrayOfInt = { R.string.touchscreen_name, R.string.lcd_name, R.string.battery_name,
-				R.string.speaker_name, R.string.microphone_name, R.string.wifi_name, R.string.bluetooth_name,
+				R.string.speaker_name, R.string.microphone_name, R.string.wifi_name, R.string.bluetooth_name, R.string.telephone_name,
 				R.string.backlight_name, R.string.memory_name,R.string.gsensor, R.string.gsensor_name, R.string.camera_name,
 				R.string.motor, R.string.touch, R.string.screen,R.string.signal_lamp,R.string.infrared_camera,R.string.projection_lamp,
 				R.string.otg,R.string.fall_arrest,R.string.five_mic,R.string.light_pen_cali};
 		this.itemString = arrayOfInt;
 	}
-	//暂时取消主板gesnor ,R.string.projection_gsensor,R.string.projection_gsensor_cali,R.string.telephone_name
+	//暂时取消主板gesnor ,R.string.projection_gsensor,R.string.projection_gsensor_cali
 	private void SetColor(TextView paramTextView) {
 		if (this.itemString.length == 0) {
 			return;

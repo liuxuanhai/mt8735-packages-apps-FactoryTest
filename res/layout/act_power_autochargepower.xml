@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_auto_charge_on"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_charge_on"/>
+        <Button
+            android:id="@+id/btn_auto_charge_off"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_charge_off"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/auto_charge_txt"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#0f07f1"
+            android:text="@string/auto_charge_power_state"/>
+        <TextView
+            android:id="@+id/txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/auto_charge_power_state_value"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#0f07f1"
+            android:text="@string/auto_charge_process_state"/>
+        <TextView
+            android:id="@+id/txt_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/auto_charge_process_state_value"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="button001"
+            android:text="@string/Success"
+            android:textSize="40.0dip" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="button002"
+            android:text="@string/Failed"
+            android:textSize="40.0dip" />
+    </LinearLayout>
+
+</LinearLayout>

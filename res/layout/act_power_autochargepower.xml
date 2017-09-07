@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/auto_charge_off"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,45 +30,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:text="@string/auto_charge_txt"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="#0f07f1"
-            android:text="@string/auto_charge_power_state"/>
-        <TextView
-            android:id="@+id/txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="@string/auto_charge_power_state_value"/>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="#0f07f1"
-            android:text="@string/auto_charge_process_state"/>
-        <TextView
-            android:id="@+id/txt_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="@string/auto_charge_process_state_value"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"

@@ -21,28 +21,23 @@
             android:layout_weight="1"
             android:textSize="30dp"
             android:text="@string/motor_back"/>
-    </LinearLayout>
+        <Button
+            android:id="@+id/btn_head_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="@string/head_up"/>
+        <Button
+            android:id="@+id/btn_head_down"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="@string/head_down"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btn_left"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="30dp"
-            android:text="@string/motor_left"/>
-        <Button
-            android:id="@+id/btn_right"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="30dp"
-            android:text="@string/motor_right"/>
+
     </LinearLayout>
-	
 	<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,28 +56,22 @@
             android:layout_weight="1"
             android:textSize="30dp"
             android:text="@string/motor_turn_right"/>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_head_up"
+            android:id="@+id/btn_left"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="30dp"
-            android:text="@string/head_up"/>
+            android:text="@string/motor_left"/>
         <Button
-            android:id="@+id/btn_head_down"
+            android:id="@+id/btn_right"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="30dp"
-            android:text="@string/head_down"/>
+            android:text="@string/motor_right"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,6 +90,45 @@
             android:layout_weight="1"
             android:textSize="30dp"
             android:text="@string/head_right"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_head_mid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="@string/head_mid"/>
+        <Button
+            android:id="@+id/btn_head_shake"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="@string/head_shake"/>
+		<Button
+            android:id="@+id/btn_head_Up_Down"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="@string/head_up_down"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_head_stop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="@string/head_stop"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"

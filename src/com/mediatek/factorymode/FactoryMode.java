@@ -26,6 +26,7 @@ import android.util.Log;
 import android.content.IntentFilter;
 import android.content.BroadcastReceiver;
 
+
 // import dalvik.annotation.Signature;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,7 @@ import com.mediatek.factorymode.motor.MotorActivity;
 import com.mediatek.factorymode.version.version;
 import com.mediatek.utils.UIUtils;
 
-public class FactoryMode extends Activity implements
-		AdapterView.OnItemClickListener {
+public class FactoryMode extends Activity implements AdapterView.OnItemClickListener {
 	public View.OnClickListener cl;
 	final int[] itemString;
 	private MyAdapter mAdapter;
@@ -46,25 +46,20 @@ public class FactoryMode extends Activity implements
 	private SharedPreferences mSp = null;
 
 	public FactoryMode() {
-		int[] arrayOfInt = { R.string.touchscreen_name, R.string.lcd_name,
-				R.string.battery_name,
-				R.string.speaker_name, R.string.microphone_name,
-				R.string.wifi_name, R.string.bluetooth_name,
-				R.string.telephone_name, R.string.backlight_name,
-				R.string.memory_name, R.string.sdcard_name,
-				R.string.gsensor_name, R.string.camera_name, R.string.motor,
-				R.string.modify_volume, R.string.touch,
-				R.string.gsensor, R.string.five_mic, R.string.auto_charge,
-				R.string.ultrasonic, R.string.foot_motor};
+		int[] arrayOfInt = { R.string.touchscreen_name, R.string.lcd_name, R.string.battery_name,
+				R.string.speaker_name, R.string.microphone_name, R.string.wifi_name, R.string.bluetooth_name, R.string.telephone_name,
+				R.string.backlight_name, R.string.memory_name, R.string.sdcard_name, R.string.gsensor_name, R.string.camera_name,
+				R.string.motor, R.string.modify_volume, R.string.touch, R.string.gsensor,R.string.five_mic ,
+				R.string.otg, R.string.urgency_button_test, R.string.signal_lamp_test};
 		this.itemString = arrayOfInt;
 	}
-	//R.string.otg ,R.string.gps_name,R.string.infrared 暂时去掉otg,gps,infrared测试
+	//去掉GPS R.string.gps_name , R.string.infrared
+
 	private void SetColor(TextView paramTextView) {
 		if (this.itemString.length == 0) {
 			return;
 		}
-		SharedPreferences localSharedPreferences1 = getSharedPreferences(
-				"FactoryMode", 0);
+		SharedPreferences localSharedPreferences1 = getSharedPreferences("FactoryMode", 0);
 		this.mSp = localSharedPreferences1;
 		int localObject = 0;
 		int i = this.itemString.length;
@@ -82,16 +77,13 @@ public class FactoryMode extends Activity implements
 				String str3 = getString(k);
 				str4 = localSharedPreferences2.getString(str3, null);
 				if (str4.equals("success")) {
-					int l = getApplicationContext().getResources().getColor(
-							R.color.Blue);
+					int l = getApplicationContext().getResources().getColor(R.color.Blue);
 					paramTextView.setTextColor(l);
 				} else if (str4.equals("default")) {
-					int i1 = getApplicationContext().getResources().getColor(
-							R.color.black);
+					int i1 = getApplicationContext().getResources().getColor(R.color.black);
 					paramTextView.setTextColor(i1);
 				} else if (str4.equals("failed")) {
-					int i2 = getApplicationContext().getResources().getColor(
-							R.color.Red);
+					int i2 = getApplicationContext().getResources().getColor(R.color.Red);
 					paramTextView.setTextColor(i2);
 				}
 			}
@@ -102,8 +94,7 @@ public class FactoryMode extends Activity implements
 	private List getData() {
 		boolean bool1 = true;
 		ArrayList localArrayList = new ArrayList();
-		SharedPreferences localSharedPreferences = PreferenceManager
-				.getDefaultSharedPreferences(this);
+		SharedPreferences localSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		int localObject = 0;
 		while (true) {
 			int i = this.itemString.length;
@@ -125,8 +116,7 @@ public class FactoryMode extends Activity implements
 
 	private void init() {
 		String str1 = "default";
-		SharedPreferences localSharedPreferences = getSharedPreferences(
-				"FactoryMode", 0);
+		SharedPreferences localSharedPreferences = getSharedPreferences("FactoryMode", 0);
 		this.mSp = localSharedPreferences;
 		SharedPreferences.Editor localEditor = this.mSp.edit();
 		int localObject = 0;
@@ -146,8 +136,7 @@ public class FactoryMode extends Activity implements
 		localEditor.commit();
 	}
 
-	protected void onActivityResult(int paramInt1, int paramInt2,
-			Intent paramIntent) {
+	protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent) {
 		System.gc();
 		Intent localIntent = new Intent();
 		localIntent.setClassName(this, "com.mediatek.factorymode.Report");
@@ -161,7 +150,7 @@ public class FactoryMode extends Activity implements
 		sendBroadcast(new Intent("com.yydrobot.STOP"));
 		
 		Intent intent=new Intent("com.yongyida.robot.VOICE");
-        intent.putExtra("data","rotate_off");    //进入工厂模式关闭声源定位
+        intent.putExtra("data","rotate_off");    //进入工厂测试，关闭声源定位
         sendBroadcast(intent);
 
 		requestWindowFeature(1);
@@ -169,11 +158,11 @@ public class FactoryMode extends Activity implements
 		setContentView(R.layout.main);
 
 		init();
-
-		/* 注册光机重力感应校准广播 */
-		IntentFilter intentCaliFilter = new IntentFilter();
-		intentCaliFilter.addAction("com.yongyida.factorytest.caliIsSuccess");
-		registerReceiver(caliBroadcastReceiver, intentCaliFilter);
+		
+		/*注册光机重力感应校准广播*/
+		IntentFilter intentCaliFilter=new IntentFilter();
+        intentCaliFilter.addAction("com.yongyida.factorytest.caliIsSuccess");
+        registerReceiver(caliBroadcastReceiver,intentCaliFilter);
 		
 		/*注册5mic测试广播*/
 		IntentFilter fiveMicFilter=new IntentFilter();
@@ -187,13 +176,11 @@ public class FactoryMode extends Activity implements
 
 	protected void onDestroy() {
 		super.onDestroy();
-		unregisterReceiver(caliBroadcastReceiver); // 注销光机重力感应广播
+		unregisterReceiver(caliBroadcastReceiver);  //注销光机重力感应广播
 		unregisterReceiver(micBroadcastReceiver);  //注销5mic测试广播
-		
 		Intent intent=new Intent("com.yongyida.robot.VOICE");
-        intent.putExtra("data","rotate_on");    //退出工厂模式打开声源定位
+        intent.putExtra("data","rotate_on");       //退出工厂模式，打开声源定位
         sendBroadcast(intent);
-		
 		sendBroadcast(new Intent("com.yongyida.robot.FACTORYCLOSE"));
 		Log.e(TAG, "onDestroy");
 		Process.killProcess(Process.myPid());
@@ -208,8 +195,7 @@ public class FactoryMode extends Activity implements
 		startActivity(intent);
 	}
 
-	public void onItemClick(AdapterView paramAdapterView, View paramView,
-			int paramInt, long paramLong) {
+	public void onItemClick(AdapterView paramAdapterView, View paramView, int paramInt, long paramLong) {
 
 		Intent localIntent = new Intent();
 		localIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
@@ -231,7 +217,7 @@ public class FactoryMode extends Activity implements
 		} else if (getString(R.string.telephone_name).equals(str1)) {
 			str2 = "com.mediatek.factorymode.signal.Signal";
 		} /*else if (getString(R.string.gps_name).equals(str1)) {
-			str2 = "com.mediatek.factorymode.gps.GPS";
+			str2 = "com.mediatek.factorymode.gps.GPS";     //去掉GPS测试
 		}*/ else if (getString(R.string.backlight_name).equals(str1)) {
 			str2 = "com.mediatek.factorymode.backlight.BackLight";
 		} else if (getString(R.string.memory_name).equals(str1)) {
@@ -265,23 +251,19 @@ public class FactoryMode extends Activity implements
 		} else if (getString(R.string.touch).equals(str1)) {
 			str2 = "com.mediatek.factorymode.touch.TouchActivity";
 		} else if (getString(R.string.gsensor).equals(str1)) {
-			sendBroadcast(new Intent("com.yydrobot.STARTGSENSOR")
-					.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES));
-		} else if (getString(R.string.five_mic).equals(str1)) {
+			sendBroadcast(new Intent("com.yydrobot.STARTGSENSOR").setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES));
+		} else if(getString(R.string.five_mic).equals(str1)){
+			//str2="com.mediatek.factorymode.microphone.FiveMic";
 			Intent intent=new Intent("com.yydrobot.MICTEST");
 			intent.putExtra("data","startMicTest");
 			sendBroadcast(intent);
-		} else if(getString(R.string.auto_charge).equals(str1)){
-			str2 = "com.mediatek.factorymode.power.AutoChargePower";
-		} else if(getString(R.string.foot_motor).equals(str1)){
-			str2 = "com.mediatek.factorymode.power.FootMotorPower";
-		} else if(getString(R.string.ultrasonic).equals(str1)){
-			str2 = "com.mediatek.factorymode.power.UltrasonicPower";
+		} else if(getString(R.string.otg).equals(str1)){
+			str2 = "com.mediatek.factorymode.otg.OTG";
+		} else if(getString(R.string.urgency_button_test).equals(str1)) {
+			str2 = "com.mediatek.factorymode.swich.UrgencyButton";
+		} else if(getString(R.string.signal_lamp_test).equals(str1)) {
+			str2 = "com.mediatek.factorymode.lamp.SignalLamp";
 		}
-		/*
-		 * else if(getString(R.string.otg).equals(str1)){
-		 * str2="com.mediatek.factorymode.otg.OTG"; }
-		 */
 		if (str2 != null) {
 			localIntent.setClassName(this, str2);
 			startActivity(localIntent);
@@ -320,46 +302,35 @@ public class FactoryMode extends Activity implements
 			return paramInt;
 		}
 
-		public View getView(int paramInt, View paramView,
-				ViewGroup paramViewGroup) {
+		public View getView(int paramInt, View paramView, ViewGroup paramViewGroup) {
 			View localView = this.mInflater.inflate(R.layout.main_grid, null);
-			TextView localTextView = (TextView) localView
-					.findViewById(R.id.factor_button);
+			TextView localTextView = (TextView) localView.findViewById(R.id.factor_button);
 			localTextView.setTextSize(20);
-			CharSequence localCharSequence = (CharSequence) FactoryMode.this.mListData
-					.get(paramInt);
+			CharSequence localCharSequence = (CharSequence) FactoryMode.this.mListData.get(paramInt);
 			localTextView.setText(localCharSequence);
 			FactoryMode.this.SetColor(localTextView);
 			int pWidth = mGrid.getWidth();
 			int pHight = mGrid.getHeight();
-			GridView.LayoutParams params = new GridView.LayoutParams(
-					pWidth / 4, pHight / 6);
+			GridView.LayoutParams params = new GridView.LayoutParams(pWidth / 4, pHight / 6);
 			localView.setLayoutParams(params);
 			return localView;
 		}
 	}
-
-	/* 光机校准成功或失败广播 */
-	private BroadcastReceiver caliBroadcastReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			if (intent.getAction().equals(
-					"com.yongyida.factorytest.caliIsSuccess")) {
-				if (intent.getBooleanExtra("result", false)) {
-					SharedPreferences sharedPreferences = context
-							.getSharedPreferences("FactoryMode", 0);
-					Utils.SetPreferences(context, sharedPreferences,
-							R.string.gsensor, "success");
-				} else {
-					SharedPreferences sharedPreferences = context
-							.getSharedPreferences("FactoryMode", 0);
-					Utils.SetPreferences(context, sharedPreferences,
-							R.string.gsensor, "failed");
-				}
-			}
-		}
-	};
-	
+	/*光机重力校准成功或失败广播*/
+	private BroadcastReceiver caliBroadcastReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals("com.yongyida.factorytest.caliIsSuccess")){
+                if(intent.getBooleanExtra("result",false)){
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("FactoryMode", 0);
+                    Utils.SetPreferences(context, sharedPreferences, R.string.gsensor, "success");
+                }else {
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("FactoryMode", 0);
+                    Utils.SetPreferences(context, sharedPreferences, R.string.gsensor, "failed");
+                }
+            }
+        }
+    };
 	/*5mic测试成功或失败广播*/
 	private BroadcastReceiver micBroadcastReceiver=new BroadcastReceiver() {
         @Override

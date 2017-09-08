@@ -8,68 +8,85 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_motor_power_on"
-            android:layout_width="0dp"
+            android:id="@+id/btn_chest_open"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"
-            android:text="@string/foot_motor_on"/>
-        <Button
-            android:id="@+id/btn_motor_power_off"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"
-            android:text="@string/foot_motor_off"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="@string/foot_motor_txt"/>
-    </LinearLayout>
+            android:textSize="25sp"
+            android:text="@string/lamp_chest_open"/>
 
+        <Button
+            android:id="@+id/btn_chest_close"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/lamp_chest_close"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_forward"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_ear_open"
             android:layout_weight="1"
-            android:textSize="20dp"
-            android:text="@string/motor_forward"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/lamp_ear_open"/>
         <Button
-            android:id="@+id/btn_back"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_ear_close"
             android:layout_weight="1"
-            android:textSize="20dp"
-            android:text="@string/motor_back"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/lamp_ear_close"/>
     </LinearLayout>
-
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_arm_open"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/lamp_arm_open"/>
+        <Button
+            android:id="@+id/btn_arm_close"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/lamp_arm_close"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txt_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="35sp"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="bottom"
         android:orientation="horizontal" >
-
         <Button
+            android:id="@+id/button001_signal_lamp_test"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="button001"
             android:text="@string/Success"
             android:textSize="40.0dip" />
+
         <Button
+            android:id="@+id/button002_signal_lamp_test"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -77,5 +94,4 @@
             android:text="@string/Failed"
             android:textSize="40.0dip" />
     </LinearLayout>
-
 </LinearLayout>

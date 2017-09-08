@@ -20,13 +20,8 @@ public class TouchActivity extends Activity {
 	public Boolean REGISTERED;
 	public Boolean BUTTON001_PRESSED;
 
-	public TextView textView000;
-	public TextView textView001;
-	public TextView textView002;
-	public TextView textView003;
-	public TextView textView004;
-	public TextView textView006;
-
+	private TextView txt000,txt001,txt002,txt003,txt004,txt005;
+	private TextView txt006,txt007,txt008,txt009,txt010,txt011,txt012;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,13 +30,19 @@ public class TouchActivity extends Activity {
 		BUTTON001_PRESSED = false;
 		REGISTERED = false;
 
-		//textView000 = (TextView) findViewById(R.id.textview000_activity_touch);
-		
-		textView001 = (TextView) findViewById(R.id.textview001_activity_touch);
-		textView002 = (TextView) findViewById(R.id.textview002_activity_touch);
-		textView003 = (TextView) findViewById(R.id.textview003_activity_touch);
-		textView004 = (TextView) findViewById(R.id.textview004_activity_touch);
-		textView006 = (TextView) findViewById(R.id.textview006_activity_touch);
+		txt000 = (TextView) findViewById(R.id.txt_tip);
+		txt001 = (TextView) findViewById(R.id.txt_head_left);
+		txt002 = (TextView) findViewById(R.id.txt_head_right);
+		txt003 = (TextView) findViewById(R.id.txt_ear_left);
+		txt004 = (TextView) findViewById(R.id.txt_ear_right);
+		txt005 = (TextView) findViewById(R.id.txt_shoulder_left);
+		txt006 = (TextView) findViewById(R.id.txt_shoulder_right);
+		txt007 = (TextView) findViewById(R.id.txt_arm_left);
+		txt008 = (TextView) findViewById(R.id.txt_arm_right);
+		txt009 = (TextView) findViewById(R.id.txt_head_back);
+		txt010 = (TextView) findViewById(R.id.txt_head_chin);
+		txt011 = (TextView) findViewById(R.id.txt_chest);
+		txt012 = (TextView) findViewById(R.id.txt_body_infrared);
 	}
 
 	private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -49,28 +50,70 @@ public class TouchActivity extends Activity {
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
 			String extra = intent.getStringExtra("android.intent.extra.Touch");
+			String result = intent.getStringExtra("android.intent.extra.yyd");
+			String ps_sta = intent.getStringExtra("android.intent.extra.PS");
 			Log.i("TouchActivity", "Action: " + action + ", Extra string: " + extra);
-			
-//			if (extra.equals("t_pir")) {
-//				textView000.setBackgroundColor(Color.rgb(0, 255, 0));
-//				textView006.setText(R.string.touch_middle);
-//			}
+			if(result!=null){
+				if(result.equals("yyd10")){
+					txt001.setBackgroundColor(Color.rgb(0, 255, 0));
+					txt000.setText(R.string.touch_head_left);
+				}else if(result.equals("yyd11")){
+					txt002.setBackgroundColor(Color.rgb(0, 255, 0));
+					txt000.setText(R.string.touch_head_right);
+				}
+			}
+			if(ps_sta!=null){
+				if(ps_sta.equals("pir_in")){
+					txt012.setBackgroundColor(Color.rgb(0, 255, 0));
+					txt000.setText(R.string.touch_middle);
+				}else if(ps_sta.equals("pir_out")){
+					txt012.setBackgroundColor(Color.rgb(255, 0, 0));
+					txt000.setText(R.string.touch_middle);
+				}
+			}
+			if(extra!=null){
+				switch (extra){
+					case "yyd9":
+						txt003.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_ear_left);
+						break;
+					case "yyd8":
+						txt004.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_ear_right);
+						break;
+					case "yyd7":
+						txt005.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_shoulder_left);
+						break;
+					case "yyd5":
+						txt006.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_shoulder_right);
+						break;
+					case "yyd6":
+						txt007.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_arm_left);
+						break;
+					case "yyd4":
+						txt008.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_arm_right);
+						break;
+					case "yyd2":
+						txt010.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_head_chin);
+						break;
+					case "yyd0":
+						txt009.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_body_back);
+						break;
+					case "yyd1":
+						txt011.setBackgroundColor(Color.rgb(0, 255, 0));
+						txt000.setText(R.string.touch_chest);
+						break;
 
-			if (extra.equals("t_head")) {
-				textView001.setBackgroundColor(Color.rgb(0, 255, 0));
-				textView006.setText(R.string.touch_head);
-			}
-			if (extra.equals("t_back")) {
-				textView002.setBackgroundColor(Color.rgb(0, 255, 0));
-				textView006.setText(R.string.touch_back);
-			}
-			if (extra.equals("t_left")) {
-				textView003.setBackgroundColor(Color.rgb(0, 255, 0));
-				textView006.setText(R.string.touch_left);
-			}
-			if (extra.equals("t_right")) {
-				textView004.setBackgroundColor(Color.rgb(0, 255, 0));
-				textView006.setText(R.string.touch_right);
+					default:
+						break;
+
+				}
 			}
 		}
 	};
@@ -81,9 +124,9 @@ public class TouchActivity extends Activity {
 		if (REGISTERED) {
 			unregisterReceiver(mReceiver);
 		}
-	};
+	}
 
-	public void button001(View view) { 
+	public void button001(View view) {
 		if (BUTTON001_PRESSED) {
 			return;
 		}

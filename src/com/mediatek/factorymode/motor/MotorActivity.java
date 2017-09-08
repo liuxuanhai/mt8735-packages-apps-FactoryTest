@@ -1,23 +1,19 @@
 package com.mediatek.factorymode.motor;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
-import android.os.Bundle;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.content.ComponentName;
+import android.view.View;
+import android.widget.Button;
 
 import com.mediatek.factorymode.R;
 import com.mediatek.factorymode.Utils;
-
-import java.util.Locale;
 import com.yongyida.robot.motorcontrol.MotorController;
 public class MotorActivity extends Activity {
 	private MotorController mMotorController;
@@ -26,12 +22,18 @@ public class MotorActivity extends Activity {
     private Button btnMotorLeft,btnHeadLeft;
     private Button btnMotorRight,btnHeadRight;
 	private Button btnMotorTurnLeft,btnMotorTurnRight;
+    private Button btn1,btn2,btn3,btn4;
     //获取MotorService实例
     private ServiceConnection motorServiceConnection=new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
             mMotorController=MotorController.Stub.asInterface(service);
+            try{
+                mMotorController.setDrvType(0);
+            }catch (RemoteException e){
+                e.printStackTrace();
+            }
         }
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
@@ -49,7 +51,9 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-                    mMotorController.forward(0.1f, 1200);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.forward(3000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -60,8 +64,9 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-				
-                    mMotorController.back(0.1f, 1200);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.back(3000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -73,7 +78,9 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-                    mMotorController.left(100,3000);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.left(3000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -84,54 +91,63 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-                    mMotorController.right(100,3000);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.right(3000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
             }
         });
 		
-		//轮子停止
+		//向左转
         btnMotorTurnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-					
-                    mMotorController.stop();
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.turnLeft(2000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
             }
         });
-        //头部回正
+        //向右转
         btnMotorTurnRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               try {
-                    mMotorController.headLeft(90);
+                try {
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.turnRight(2000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        //横向左移
+        //头向上
         btnHeadUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    mMotorController.leftMove(0.1f, 1200);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.headUp(3000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
             }
         });
-        //横向右移
+        //头向下
         btnHeadDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    mMotorController.rightMove(0.1f, 1200);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.headDown(3000);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -142,7 +158,9 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-                    mMotorController.headLeft(180);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.headLeftEnd();
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -153,8 +171,63 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-					
-                    mMotorController.headRight(0);
+					mMotorController.setDrvType(0);
+					mMotorController.setSpeed(50);
+                    mMotorController.headRightEnd();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+		//头恢复到中间
+		btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+					mMotorController.setDrvType(0);
+                    mMotorController.setSpeed(50);
+                    mMotorController.headLeftTurnMid();
+					mMotorController.headUpDownTurnMid();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+		//左右摇头
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+					mMotorController.setDrvType(0);
+                    mMotorController.setSpeed(50);
+					mMotorController.headUpDownStop();
+                    mMotorController.headShake();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        //停止摇头
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    mMotorController.headStop();
+                    mMotorController.headUpDownStop();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+		//上下点头
+		btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+					mMotorController.setDrvType(0);
+                    mMotorController.setSpeed(50);
+                    mMotorController.headStop();
+                    mMotorController.headUpAndDown();
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -185,6 +258,10 @@ public class MotorActivity extends Activity {
 		btnHeadLeft=(Button)findViewById(R.id.btn_head_left);
 		btnMotorTurnLeft=(Button)findViewById(R.id.btn_turn_left);
 		btnMotorTurnRight=(Button)findViewById(R.id.btn_turn_right);
+        btn1=(Button)findViewById(R.id.btn_head_mid);
+        btn2=(Button)findViewById(R.id.btn_head_shake);
+        btn3=(Button)findViewById(R.id.btn_head_stop);
+		btn4=(Button)findViewById(R.id.btn_head_Up_Down);
     }
     private void bindMotorService(){
         Intent intent = new Intent();

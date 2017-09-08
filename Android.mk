@@ -25,7 +25,8 @@ LOCAL_ASSET_DIR := $(LOCAL_PATH)/assets
 LOCAL_STATIC_JAVA_LIBRARIES := \
 	android-support-v4 \
 	libFactory_gson-2.3.1 \
-	libFactory_MotorService
+	libFactory_MotorService \
+	libFactory_BreathledService
 
 LOCAL_JNI_SHARED_LIBRARIES := libIRCore
 
@@ -39,5 +40,6 @@ include $(CLEAR_VARS)
 
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := \
 	libFactory_gson-2.3.1:libs/gson-2.3.1.jar \
-	libFactory_MotorService:libs/MotorService.jar
+	libFactory_MotorService:libs/MotorService.jar \
+	libFactory_BreathledService:libs/BreathledService.jar
 include $(BUILD_MULTI_PREBUILT)

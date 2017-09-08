@@ -87,8 +87,7 @@ public class Memory extends Activity
     String str = getInfo("cat /proc/driver/nand");
     localTextView4.setText(str);
   }
-  
-	private String getAvailMemory() {// 获取android当前可用内存大小
+    private String getAvailMemory() {// 获取android当前可用内存大小
 
         ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
@@ -96,8 +95,8 @@ public class Memory extends Activity
         //mi.availMem; 当前系统的可用内存
         return Formatter.formatFileSize(getBaseContext(), mi.availMem);// 将获取的内存大小规格化
     }
-  
-     private String getTotalMemory() {
+
+    private String getTotalMemory() {
         String str1 = "/proc/meminfo";// 系统内存信息文件
         String str2;
         String[] arrayOfString;

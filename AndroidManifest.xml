@@ -275,25 +275,17 @@
 		<!-- add sunyibin start-->
 		<activity
             android:name="com.mediatek.factorymode.otg.OTG"
-            android:label="@string/otg"
+            android:label="@string/version"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-
-        <activity
-            android:name="com.mediatek.factorymode.power.FootMotorPower"
-            android:label="@string/foot_motor"
+		<activity
+            android:name="com.mediatek.factorymode.swich.UrgencyButton"
+            android:label="@string/urgency_button_test"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-
-        <activity
-            android:name="com.mediatek.factorymode.power.AutoChargePower"
-            android:label="@string/auto_charge"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-
-        <activity
-            android:name="com.mediatek.factorymode.power.UltrasonicPower"
-            android:label="@string/ultrasonic"
+		<activity
+            android:name="com.mediatek.factorymode.lamp.SignalLamp"
+            android:label="@string/signal_lamp_test"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <!-- add sunyibin end-->

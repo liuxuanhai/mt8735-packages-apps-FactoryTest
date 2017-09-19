@@ -272,22 +272,22 @@
             </intent-filter>
         </receiver>
 		
-		<!-- add sunyibin start-->
-		<activity
+				<!-- add sunyibin start-->
+        <activity
+            android:name="com.mediatek.factorymode.microphone.FiveMic"
+            android:label="@string/version"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+				<activity
             android:name="com.mediatek.factorymode.otg.OTG"
             android:label="@string/version"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-		<activity
-            android:name="com.mediatek.factorymode.swich.UrgencyButton"
-            android:label="@string/urgency_button_test"
+        <activity
+            android:name="com.mediatek.factorymode.motor.DanceActivity"
+            android:label="@string/version"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-		<activity
-            android:name="com.mediatek.factorymode.lamp.SignalLamp"
-            android:label="@string/signal_lamp_test"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
         <!-- add sunyibin end-->
     </application>
 

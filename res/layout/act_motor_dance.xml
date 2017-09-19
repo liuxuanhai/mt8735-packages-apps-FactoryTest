@@ -3,50 +3,37 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btn_start_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/urgency_start"/>
-
-    </LinearLayout>
-
-    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/description_switch"
-        android:textSize="20dp" />
-
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:scrollbarSize="35dip" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="bottom"
         android:orientation="horizontal" >
-
         <Button
-            android:id="@+id/button001_activity_urgency"
+            android:id="@+id/button001_otg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="button001"
             android:text="@string/Success"
-            android:textSize="25.0dip" />
+            android:textSize="40.0dip" />
+
         <Button
-            android:id="@+id/button002_activity_urgency"
+            android:id="@+id/button002_otg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="button002"
             android:text="@string/Failed"
-            android:textSize="25.0dip" />
+            android:textSize="40.0dip" />
     </LinearLayout>
-
 </LinearLayout>

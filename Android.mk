@@ -10,6 +10,14 @@ LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_SUFFIX := .so
 include $(BUILD_PREBUILT)
 
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libmisc
+LOCAL_SRC_FILES_32 := libs/armeabi/libmisc.so
+LOCAL_MULTILIB := 32
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+include $(BUILD_PREBUILT)
 
 #-----------------------------------------------------
 
@@ -25,10 +33,9 @@ LOCAL_ASSET_DIR := $(LOCAL_PATH)/assets
 LOCAL_STATIC_JAVA_LIBRARIES := \
 	android-support-v4 \
 	libFactory_gson-2.3.1 \
-	libFactory_MotorService \
-	libFactory_BreathledService
+	libFactory_MotorService
 
-LOCAL_JNI_SHARED_LIBRARIES := libIRCore
+LOCAL_JNI_SHARED_LIBRARIES := libIRCore libmisc
 
 LOCAL_MULTILIB := 32
 
@@ -40,6 +47,5 @@ include $(CLEAR_VARS)
 
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := \
 	libFactory_gson-2.3.1:libs/gson-2.3.1.jar \
-	libFactory_MotorService:libs/MotorService.jar \
-	libFactory_BreathledService:libs/BreathledService.jar
+	libFactory_MotorService:libs/MotorService.jar
 include $(BUILD_MULTI_PREBUILT)

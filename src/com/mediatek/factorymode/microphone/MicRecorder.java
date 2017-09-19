@@ -70,7 +70,7 @@ public class MicRecorder extends Activity implements View.OnClickListener {
 			this.mRecord.setText(R.string.Mic_stop);
 		} catch (Exception localException) {
 			String str3 = localException.getMessage();
-			Toast.makeText(this, str3, 0);
+			Toast.makeText(this, str3, Toast.LENGTH_SHORT);
 			this.mRecord.setTag("ing");
 		}
 	}
@@ -102,18 +102,6 @@ public class MicRecorder extends Activity implements View.OnClickListener {
 		SharedPreferences localSharedPreferences = this.mSp;
 		String str1 = Environment.getExternalStorageState();
 		String str2 = "mounted";
-
-		if (paramView.getId() == this.mRecord.getId()) {
-			if (str1.equals(str2)) {
-				if ((this.mRecord.getTag() != null) && (this.mRecord.getTag().equals("ing")))
-					stopAndSave();
-				else
-					start();
-			} else {
-				this.mRecord.setText(R.string.sdcard_tips_failed);
-			}
-		}
-
 		if (paramView.getId() == this.mBtMicOk.getId()) {
 			this.mBtMicFailed.setBackgroundColor(getResources().getColor(R.color.gray));
 			this.mBtMicOk.setBackgroundColor(getResources().getColor(R.color.Green));
@@ -126,6 +114,20 @@ public class MicRecorder extends Activity implements View.OnClickListener {
 			this.mBtMicOk.setBackgroundColor(getResources().getColor(R.color.gray));
 			Utils.SetPreferences(this, localSharedPreferences, R.string.microphone_name, "failed");
 			finish();
+		}
+
+		if(isFastClick(3000)){
+			return;
+		}
+		if (paramView.getId() == this.mRecord.getId()) {
+			if (str1.equals(str2)) {
+				if ((this.mRecord.getTag() != null) && (this.mRecord.getTag().equals("ing")))
+					stopAndSave();
+				else
+					start();
+			} else {
+				this.mRecord.setText(R.string.sdcard_tips_failed);
+			}
 		}
 	}
 
@@ -154,5 +156,15 @@ public class MicRecorder extends Activity implements View.OnClickListener {
 			this.mPlayer.stop();
 		if (this.mRecorder != null)
 			this.mRecorder.stop();
+	}
+
+	private static long lastClickTime;
+	public static boolean isFastClick(long ClickIntervalTime) {
+		long ClickingTime = System.currentTimeMillis();
+		if ( ClickingTime - lastClickTime < ClickIntervalTime) {
+			return true;
+		}
+		lastClickTime = ClickingTime;
+		return false;
 	}
 }

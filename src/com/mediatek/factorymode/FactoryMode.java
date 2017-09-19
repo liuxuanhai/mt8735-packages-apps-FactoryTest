@@ -34,6 +34,7 @@ import java.util.List;
 import com.mediatek.factorymode.motor.MotorActivity;
 import com.mediatek.factorymode.version.version;
 import com.mediatek.utils.UIUtils;
+import com.yyd.robot.misc.Misc;
 
 public class FactoryMode extends Activity implements AdapterView.OnItemClickListener {
 	public View.OnClickListener cl;
@@ -44,16 +45,15 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 
 	private List mListData;
 	private SharedPreferences mSp = null;
-
+	private Misc mMisc = null;
 	public FactoryMode() {
-		int[] arrayOfInt = { R.string.touchscreen_name, R.string.lcd_name, R.string.battery_name,
+		int[] arrayOfInt = { R.string.touchscreen_name, R.string.lcd_name, R.string.gps_name, R.string.battery_name,
 				R.string.speaker_name, R.string.microphone_name, R.string.wifi_name, R.string.bluetooth_name, R.string.telephone_name,
 				R.string.backlight_name, R.string.memory_name, R.string.sdcard_name, R.string.gsensor_name, R.string.camera_name,
-				R.string.motor, R.string.modify_volume, R.string.touch, R.string.gsensor,R.string.five_mic ,
-				R.string.otg, R.string.urgency_button_test, R.string.signal_lamp_test};
+				R.string.motor, R.string.modify_volume, R.string.infrared, R.string.touch, R.string.gsensor,R.string.five_mic ,
+				R.string.otg,R.string.dance};
 		this.itemString = arrayOfInt;
 	}
-	//去掉GPS R.string.gps_name , R.string.infrared
 
 	private void SetColor(TextView paramTextView) {
 		if (this.itemString.length == 0) {
@@ -145,30 +145,32 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 
 	public void onCreate(Bundle paramBundle) {
 		Log.d(TAG, "onCreate");
-
+		mMisc = new Misc();
+		String gsensorSwitch = "Factory";
+		mMisc.setGsensorData(gsensorSwitch, gsensorSwitch.length());
+						
 		sendBroadcast(new Intent("com.yongyida.robot.FACTORYSTART"));
 		sendBroadcast(new Intent("com.yydrobot.STOP"));
-		
-		Intent intent=new Intent("com.yongyida.robot.VOICE");
-        intent.putExtra("data","rotate_off");    //进入工厂测试，关闭声源定位
-        sendBroadcast(intent);
 
+		Intent intent=new Intent("com.yongyida.robot.VOICE");
+        intent.putExtra("data","rotate_off");    //鍏抽棴澹版簮瀹氫綅
+        sendBroadcast(intent);
 		requestWindowFeature(1);
 		super.onCreate(paramBundle);
 		setContentView(R.layout.main);
 
 		init();
 		
-		/*注册光机重力感应校准广播*/
+		/*娉ㄥ唽鍏夋満閲嶅姏鎰熷簲鏍″噯骞挎挱*/
 		IntentFilter intentCaliFilter=new IntentFilter();
         intentCaliFilter.addAction("com.yongyida.factorytest.caliIsSuccess");
         registerReceiver(caliBroadcastReceiver,intentCaliFilter);
 		
-		/*注册5mic测试广播*/
-		IntentFilter fiveMicFilter=new IntentFilter();
-        fiveMicFilter.addAction("com.yongyida.factorytest.micTestSuccess");
-        registerReceiver(micBroadcastReceiver,fiveMicFilter);
-
+		/*娉ㄥ唽5mic娴嬭瘯骞挎挱*/
+		IntentFilter intentMicFilter=new IntentFilter();
+        intentMicFilter.addAction("com.yongyida.factorytest.micTestSuccess");
+        registerReceiver(micTestBroadcastReceiver,intentMicFilter);
+		
 		this.mGrid = (GridView) findViewById(R.id.main_grid);
 		this.mListData = getData();
 		this.mAdapter = new MyAdapter(this);
@@ -176,10 +178,12 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 
 	protected void onDestroy() {
 		super.onDestroy();
-		unregisterReceiver(caliBroadcastReceiver);  //注销光机重力感应广播
-		unregisterReceiver(micBroadcastReceiver);  //注销5mic测试广播
+		String gsensorSwitch = "Normal";
+		mMisc.setGsensorData(gsensorSwitch, gsensorSwitch.length());
+		unregisterReceiver(caliBroadcastReceiver);  	//娉ㄩ攢鍏夋満閲嶅姏鎰熷簲骞挎挱
+		unregisterReceiver(micTestBroadcastReceiver);   //娉ㄩ攢5mic娴嬭瘯骞挎挱
 		Intent intent=new Intent("com.yongyida.robot.VOICE");
-        intent.putExtra("data","rotate_on");       //退出工厂模式，打开声源定位
+        intent.putExtra("data","rotate_on");       //鎵撳紑澹版簮瀹氫綅
         sendBroadcast(intent);
 		sendBroadcast(new Intent("com.yongyida.robot.FACTORYCLOSE"));
 		Log.e(TAG, "onDestroy");
@@ -216,9 +220,9 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 			str2 = "com.mediatek.factorymode.bluetooth.Bluetooth";
 		} else if (getString(R.string.telephone_name).equals(str1)) {
 			str2 = "com.mediatek.factorymode.signal.Signal";
-		} /*else if (getString(R.string.gps_name).equals(str1)) {
-			str2 = "com.mediatek.factorymode.gps.GPS";     //去掉GPS测试
-		}*/ else if (getString(R.string.backlight_name).equals(str1)) {
+		} else if (getString(R.string.gps_name).equals(str1)) {
+			str2 = "com.mediatek.factorymode.gps.GPS";
+		} else if (getString(R.string.backlight_name).equals(str1)) {
 			str2 = "com.mediatek.factorymode.backlight.BackLight";
 		} else if (getString(R.string.memory_name).equals(str1)) {
 			str2 = "com.mediatek.factorymode.memory.Memory";
@@ -258,11 +262,9 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 			intent.putExtra("data","startMicTest");
 			sendBroadcast(intent);
 		} else if(getString(R.string.otg).equals(str1)){
-			str2 = "com.mediatek.factorymode.otg.OTG";
-		} else if(getString(R.string.urgency_button_test).equals(str1)) {
-			str2 = "com.mediatek.factorymode.swich.UrgencyButton";
-		} else if(getString(R.string.signal_lamp_test).equals(str1)) {
-			str2 = "com.mediatek.factorymode.lamp.SignalLamp";
+			str2="com.mediatek.factorymode.otg.OTG";
+		} else if(getString(R.string.dance).equals(str1)){
+			str2 = "com.mediatek.factorymode.motor.DanceActivity";
 		}
 		if (str2 != null) {
 			localIntent.setClassName(this, str2);
@@ -316,7 +318,7 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 			return localView;
 		}
 	}
-	/*光机重力校准成功或失败广播*/
+	/*鍏夋満鏍″噯鎴愬姛鎴栧け璐ュ箍鎾�*/
 	private BroadcastReceiver caliBroadcastReceiver=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -331,8 +333,9 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
             }
         }
     };
-	/*5mic测试成功或失败广播*/
-	private BroadcastReceiver micBroadcastReceiver=new BroadcastReceiver() {
+	
+	/*5mic鎴愬姛鎴栧け璐ュ箍鎾�*/
+	private BroadcastReceiver micTestBroadcastReceiver=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals("com.yongyida.factorytest.micTestSuccess")){

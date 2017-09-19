@@ -22,7 +22,7 @@ public class MotorActivity extends Activity {
     private Button btnMotorLeft,btnHeadLeft;
     private Button btnMotorRight,btnHeadRight;
 	private Button btnMotorTurnLeft,btnMotorTurnRight;
-    private Button btn1,btn2,btn3,btn4;
+    private Button btn1,btn2,btn3;
     //获取MotorService实例
     private ServiceConnection motorServiceConnection=new ServiceConnection() {
 
@@ -158,7 +158,6 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-					mMotorController.setDrvType(0);
 					mMotorController.setSpeed(50);
                     mMotorController.headLeftEnd();
                 } catch (RemoteException e) {
@@ -171,7 +170,6 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-					mMotorController.setDrvType(0);
 					mMotorController.setSpeed(50);
                     mMotorController.headRightEnd();
                 } catch (RemoteException e) {
@@ -184,10 +182,8 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-					mMotorController.setDrvType(0);
                     mMotorController.setSpeed(50);
                     mMotorController.headLeftTurnMid();
-					mMotorController.headUpDownTurnMid();
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -198,9 +194,6 @@ public class MotorActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-					mMotorController.setDrvType(0);
-                    mMotorController.setSpeed(50);
-					mMotorController.headUpDownStop();
                     mMotorController.headShake();
                 } catch (RemoteException e) {
                     e.printStackTrace();
@@ -213,21 +206,6 @@ public class MotorActivity extends Activity {
             public void onClick(View view) {
                 try {
                     mMotorController.headStop();
-                    mMotorController.headUpDownStop();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-		//上下点头
-		btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-					mMotorController.setDrvType(0);
-                    mMotorController.setSpeed(50);
-                    mMotorController.headStop();
-                    mMotorController.headUpAndDown();
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -237,6 +215,11 @@ public class MotorActivity extends Activity {
     public void button009(View view) {
 		SharedPreferences sharedPreferences = getSharedPreferences("FactoryMode", 0);
 		Utils.SetPreferences(this, sharedPreferences, R.string.motor, "success");
+			try {
+                mMotorController.headStop();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         unbindService(motorServiceConnection);
         finish();
     }
@@ -244,6 +227,11 @@ public class MotorActivity extends Activity {
     public void button010(View view) {
 		SharedPreferences sharedPreferences = getSharedPreferences("FactoryMode", 0);
 		Utils.SetPreferences(this, sharedPreferences, R.string.motor, "failed");
+			try {
+                mMotorController.headStop();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         unbindService(motorServiceConnection);
         finish();
     }
@@ -261,7 +249,6 @@ public class MotorActivity extends Activity {
         btn1=(Button)findViewById(R.id.btn_head_mid);
         btn2=(Button)findViewById(R.id.btn_head_shake);
         btn3=(Button)findViewById(R.id.btn_head_stop);
-		btn4=(Button)findViewById(R.id.btn_head_Up_Down);
     }
     private void bindMotorService(){
         Intent intent = new Intent();

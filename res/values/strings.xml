@@ -418,7 +418,7 @@
 	<!-- add sunyibin start -->
     <string name="five_mic">5MIC测试</string>
     <string name="mic5_txt">四个不同方向唤醒,成功则变绿,复位可再次检测</string>
-		<string name="angle_txt">唤醒角度:</string>
+	<string name="angle_txt">唤醒角度:</string>
     <string name="angle">0</string>
     <string name="back_txt">后mic</string>
     <string name="forward_txt">前mic</string>
@@ -426,23 +426,22 @@
     <string name="right_txt">右mic</string>
     <string name="mid_txt">中mic</string>
     <string name="mic5_reset">复位</string>
-		<string name="otg">OTG测试</string>
-		<string name="OTG_textView">插入OTG线外接U盘后，观察是否读取到U盘的存储空间信息</string>
-		<string name="motor_stop">停止</string>
-		<string name="motor_forward">前进</string>
+	<string name="otg">OTG测试</string>
+	<string name="OTG_textView">插入OTG线外接U盘后，观察是否读取到U盘的存储空间信息</string>
+	<string name="motor_stop">停止</string>
+	<string name="motor_forward">前进</string>
     <string name="motor_back">后退</string>
     <string name="motor_left">原地左转</string>
     <string name="motor_right">原地右转</string>
-		<string name="motor_turn_left">向左转</string>
+	<string name="motor_turn_left">向左转</string>
     <string name="motor_turn_right">向右转</string>
-		<string name="head_up">头向上</string>
+	<string name="head_up">头向上</string>
     <string name="head_down">头向下</string>
     <string name="head_left">头向左</string>
     <string name="head_right">头向右</string>
     <string name="head_mid">转动头到中间</string>
     <string name="head_shake">左右摇头</string>
     <string name="head_stop">停止摇头</string>
-    <string name="dance">跳舞</string>
     <!--add sunyibin end-->
 
 </resources>

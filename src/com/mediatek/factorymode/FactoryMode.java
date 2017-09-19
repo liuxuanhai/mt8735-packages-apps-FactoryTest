@@ -51,7 +51,7 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 				R.string.speaker_name, R.string.microphone_name, R.string.wifi_name, R.string.bluetooth_name, R.string.telephone_name,
 				R.string.backlight_name, R.string.memory_name, R.string.sdcard_name, R.string.gsensor_name, R.string.camera_name,
 				R.string.motor, R.string.modify_volume, R.string.infrared, R.string.touch, R.string.gsensor,R.string.five_mic ,
-				R.string.otg,R.string.dance};
+				R.string.otg};
 		this.itemString = arrayOfInt;
 	}
 
@@ -263,8 +263,6 @@ public class FactoryMode extends Activity implements AdapterView.OnItemClickList
 			sendBroadcast(intent);
 		} else if(getString(R.string.otg).equals(str1)){
 			str2="com.mediatek.factorymode.otg.OTG";
-		} else if(getString(R.string.dance).equals(str1)){
-			str2 = "com.mediatek.factorymode.motor.DanceActivity";
 		}
 		if (str2 != null) {
 			localIntent.setClassName(this, str2);

@@ -272,22 +272,17 @@
             </intent-filter>
         </receiver>
 		
-				<!-- add sunyibin start-->
+		<!-- add sunyibin start-->
         <activity
             android:name="com.mediatek.factorymode.microphone.FiveMic"
             android:label="@string/version"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-				<activity
+		<activity
             android:name="com.mediatek.factorymode.otg.OTG"
             android:label="@string/version"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name="com.mediatek.factorymode.motor.DanceActivity"
-            android:label="@string/version"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
         <!-- add sunyibin end-->
     </application>
 
